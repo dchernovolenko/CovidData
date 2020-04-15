@@ -1,18 +1,23 @@
 import sys
-x = sys.stdin.readlines()
-print(x)
-counties = ['Barnstable', 'Berkshire', 'Bristol', "Dukes", "Essex", "Franklin", "Hampden", "Hampshire", "Middlesex", "Nantucket", "Norfolk", "Plymouth", "Suffolk", "Worcester"]
-deathnum = [0]*14
-for i in x:
-    print(i)
-    z = i.split()
-    print(z)
-    for p in z:
-        print(p)
-        if p in counties:
-            deathnum[counties.index(p)] += 1
 
-print(counties)
-print(deathnum)
+print('copy data from ms pdf')
+x = sys.stdin.readlines()
+print('copy prev data from google sheets')
+y = sys.stdin.readlines()
+
+for i in range(0, len(y)):
+    y[i] = int(y[i].strip('/n'))
+
+counties = ['Barnstable', 'Berkshire', 'Bristol', "Dukes", "Essex", "Franklin", "Hampden", "Hampshire", "Middlesex", "Nantucket", "Norfolk", "Plymouth", "Suffolk", "Worcester"]
+for i in x:
+    z = i.split()
+    for p in z:
+        if p in counties:
+            y[counties.index(p)] += 1
+
+for i in y:
+    print(i)
+
+print("total:" + sum(y))
         
-        
+
